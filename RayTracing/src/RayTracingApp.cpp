@@ -3,10 +3,19 @@
 #include "Core/Image.h"
 
 #include "Renderer.h"
+#include "Camera.h"
 
 class RayTracingLayer : public Core::Layer
 {
 public:
+	RayTracingLayer()
+		: m_Camera(45.0f, 0.1f, 1.00f) {}
+
+	virtual void OnUpdate(float ts) override
+	{
+		m_Camera.OnUpdate(ts);
+	}
+
 	virtual void OnRender() override
 	{
 		ImGui::Begin("Settings");
@@ -31,13 +40,15 @@ private:
 	void Render()
 	{
 		m_Renderer.Resize(m_ViewportWidth, m_ViewportHeight);
-		m_Renderer.Render();
+		m_Camera.Resize(m_ViewportWidth, m_ViewportHeight);
+		m_Renderer.Render(m_Camera);
 	}
 private:
 	uint32_t m_ViewportWidth = 0;
 	uint32_t m_ViewportHeight = 0;
 
 	RayTracing::Renderer m_Renderer;
+	RayTracing::Camera m_Camera;
 };
 
 Core::Application *Core::CreateApplication(int argc, char **argv)
