@@ -17,7 +17,7 @@ namespace RayTracing {
 		void Resize(uint32_t width, uint32_t height);
 		void Render();
 	private:
-		uint32_t PerPixel(glm::vec2 coord);
+		glm::vec4 PerPixel(glm::vec2 coord);
 	private:
 		uint32_t* m_ImageData = nullptr;
 		std::shared_ptr<Core::Image> m_FinalImage;

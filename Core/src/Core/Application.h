@@ -66,8 +66,6 @@ namespace Core
 		void Init();
 		void Shutdown();
 
-		void SetCustomTheme();
-
 	private:
 		ApplicationSpecification m_Specification;
 		GLFWwindow *m_WindowHandle = nullptr;
